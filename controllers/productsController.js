@@ -1,6 +1,5 @@
 const express = require('express')
 const controller = express.Router()
-
 const productSchema = require('../schemas/productSchema')
 
 // usecured
@@ -25,7 +24,6 @@ controller.route('/').get(async(req, res) => {
     } else
         res.status(400).json()
 })
-
 
 controller.route('/:tag').get(async(req, res) => {
     const products = []
@@ -70,7 +68,6 @@ controller.route('/:tag/:take').get(async(req, res) => {
     
 })
 
-
 controller.route('/product/details/:articleNumber').get(async(req, res) => {
     const product = await productSchema.findById(req.params.articleNumber)
     if(product) {
@@ -89,7 +86,7 @@ controller.route('/product/details/:articleNumber').get(async(req, res) => {
 })
 
 
-// // secured
+// secured
 
 controller.route('/').post(async (req,res) => {
     const { name, description, price, category, tag, imageName, rating} = req.body
